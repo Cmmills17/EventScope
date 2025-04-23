@@ -78,25 +78,11 @@
                     <div class="card-body">
                         <div class="dropdown mb-3">
                             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                                aria-expanded="false" id="dropdown-btn">
                                 All Events
                             </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button class="dropdown-item">
-                                        New York
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item">
-                                        San Diego
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item">
-                                        Charlotte
-                                    </button>
-                                </li>
+                            <ul class="dropdown-menu" id="city-dropdown">
+                                <!-- event cities go here -->
                             </ul>
                         </div>
 
@@ -104,26 +90,26 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th colspan="2">
-                                        Stats for All Events
+                                        Stats for <span id="stats-city">All</span> Events
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Total Attendance</td>
-                                    <td class="text-end">1000</td>
+                                    <td class="text-end" id="stats-total">0</td>
                                 </tr>
                                 <tr>
                                     <td>Average Attendance</td>
-                                    <td class="text-end">1000</td>
+                                    <td class="text-end" id="stats-average">0</td>
                                 </tr>
                                 <tr>
                                     <td>Most Attended</td>
-                                    <td class="text-end">1000</td>
+                                    <td class="text-end" id="stats-max">0</td>
                                 </tr>
                                 <tr>
                                     <td>Least Attended</td>
-                                    <td class="text-end">1000</td>
+                                    <td class="text-end" id="stats-min">0</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -148,49 +134,8 @@
                             <th>Date</th>
                             <th class="text-end">Attendance</th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
-                            <tr>
-                                <td>Comic Con</td>
-                                <td>Charlotte</td>
-                                <td>North Carolina</td>
-                                <td>4/23/2025</td>
-                                <td class="text-end">10,000</td>
-                            </tr>
+                        <tbody id="events-table">
+                            <!-- event rows go here -->
                         </tbody>
                     </table>
                 </div>
@@ -236,6 +181,22 @@
             </div>
         </div>
     </footer>
+
+    <template id="event-row-template">
+        <tr>
+            <td class="evt-name"></td>
+            <td class="evt-city"></td>
+            <td class="evt-state"></td>
+            <td class="evt-date"></td>
+            <td class="evt-attendance text-end"></td>
+        </tr>
+    </template>
+
+    <template id="dropdown-item-template">
+        <li>
+            <button class="dropdown-item"></button>
+        </li>
+    </template>
 
 
 
