@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Name: A Coding Challenge | Cameron Mills</title>
+    <title>EventScope: A Coding Challenge | Cameron Mills</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="/img/cmLogo.svg" height="50" class="me-1" />
-                    App Name
+                    EventScope
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,14 +67,134 @@
         </nav>
     </header>
 
-    <main class="container py-3">
-        <h1>The App UI Goes Here</h1>
+    <main class="container-lg py-3">
+        <div class="row g-4 mb-3">
+            <div class="col-12 col-md-6 col-lg-5 order-md-last text-center">
+                <img src="/img/eventScopeNew.png" class="img-fluid p-3 app-logo" />
+            </div>
+            <div class="col col-md-6 col-lg-7">
+                <!-- Stats Display -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dropdown mb-3">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                All Events
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="dropdown-item">
+                                        New York
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item">
+                                        San Diego
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item">
+                                        Charlotte
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
 
-        <div class="hstack gap-3">
-            <input id="messageInput" class="form-control" stlye="max-width: 16rem" placeholder="Enter a Message" />
-            <button id="submitBtn" class="btn btn-primary">
-                Display Message
-            </button>
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th colspan="2">
+                                        Stats for All Events
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Total Attendance</td>
+                                    <td class="text-end">1000</td>
+                                </tr>
+                                <tr>
+                                    <td>Average Attendance</td>
+                                    <td class="text-end">1000</td>
+                                </tr>
+                                <tr>
+                                    <td>Most Attended</td>
+                                    <td class="text-end">1000</td>
+                                </tr>
+                                <tr>
+                                    <td>Least Attended</td>
+                                    <td class="text-end">1000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <button class="btn btn-primary mb-3">
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Add Event
+                </button>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <th>Event Name</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Date</th>
+                            <th class="text-end">Attendance</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Comic Con</td>
+                                <td>Charlotte</td>
+                                <td>North Carolina</td>
+                                <td>4/23/2025</td>
+                                <td class="text-end">10,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </main>

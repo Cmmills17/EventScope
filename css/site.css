@@ -61,4 +61,10 @@ footer .bi:hover {
 
 .app-logo {
     max-width: 400px;
+    border-radius: 2rem;
+}
+
+th,
+td {
+    text-wrap: nowrap;
 }
