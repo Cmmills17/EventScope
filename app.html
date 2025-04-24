@@ -214,10 +214,8 @@
 
     <script>
 
-        // get the <button> element from the HTML
-        let button = document.getElementById('submitBtn');
-        // When the button is clicked, run the displayMessage function
-        button.addEventListener('click', displayMessage);
+        // create a dropdown once the page finishes loading
+        document.addEventListener('DOMContentLoaded', buildDropDown);
 
     </script>
 </body>
