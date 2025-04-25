@@ -136,3 +136,9 @@ function displayStats(events) {
     document.getElementById('stats-average').innerText = averageAttendance.toLocaleString();
 }
 
+
+function displayTable(events) {
+
+    let rowTemplate = document.getElementById('event-row-template')
+
+}
