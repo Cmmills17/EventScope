@@ -69,7 +69,7 @@ const DEFAULT_EVENTS = [
 function buildDropDown() {
 
     // get a list of all our events we know about
-    let currentEvents = DEFAULT_EVENTS; // TODO: add new events???
+    let currentEvents = getEvents();
 
     // get a list of just the city names
     let cities = [];
@@ -87,6 +87,8 @@ function buildDropDown() {
 
     let itemTemplate = document.getElementById('dropdown-item-template');
     let dropdownMenu = document.getElementById('city-dropdown');
+
+    dropdownMenu.innerHTML = '';
 
     // make a dropdown item for each unique city name
     for (let i = 0; i < dropdownOptions.length; i++) {
@@ -106,6 +108,9 @@ function buildDropDown() {
         dropdownMenu.appendChild(dropdownItem);
     }
 
+
+    document.getElementById('stats-city').innerText = 'All';
+    document.getElementById('dropdown-btn').innerText = 'All Events';
     // stick those dropdown items on the page
     displayStats(currentEvents);
     displayEvents(currentEvents);
@@ -179,10 +184,10 @@ function filterByCity(clickEvent) {
     let selectedCity = clickEvent.currentTarget.innerText;
 
     document.getElementById('stats-city').innerText = selectedCity;
-    document.getElementById('dropdown-btn').innerText = `${selectedCity} Events`
+    document.getElementById('dropdown-btn').innerText = `${selectedCity} Events`;
 
     // get an array of ALL the events I know about
-    let allEvents = DEFAULT_EVENTS; //TODO: save the new events???
+    let allEvents = getEvents();
 
     // make a new array of ONLY the events from 'selectedCity'
     let filteredEvents = [];
@@ -191,7 +196,6 @@ function filterByCity(clickEvent) {
         // if you selected 'All' we'll just use allEvents
         filteredEvents = allEvents;
     } else {
-
         for (let i = 0; i < allEvents.length; i++) {
             let event = allEvents[i];
 
@@ -207,7 +211,72 @@ function filterByCity(clickEvent) {
 
 
 function saveNewEvent(formSubmitEvent) {
+    // stop the form from refreshing the page
     formSubmitEvent.preventDefault();
 
-    alert('form submitted');
+    // get the data that was entered into the form
+    let newEventForm = document.getElementById('new-event-form');
+    let formData = new FormData(newEventForm);
+    let newEvent = Object.fromEntries(formData.entries());
+
+    // convert attendance from sting to number
+    newEvent.attendance = parseInt(newEvent.attendance);
+
+    // format date like the other elements
+    newEvent.date = new Date(newEvent.date).toLocaleDateString();
+
+    // save the event to local storage
+    let allEvents = getEvents();
+    allEvents.push(newEvent);
+    saveEvents(allEvents);
+
+
+
+    // reset out the form
+    newEventForm.reset();
+
+    // Close the Modal
+    let modalElement = document.getElementById('new-event-modal');
+    bootstrap.Modal.getInstance(modalElement).hide();
+
+    // update our dropdown, update the stats, update the table
+    buildDropDown();
+}
+
+/* ********* Local Storage Notes *************
+
+
+- only gets saved in that specific browser
+- Only saved on that specific device
+- stored based on the URL
+- local storage is INSECURE storage
+- local storage is NOT PERMANENT
+- Local storage is key-value pairs of ONLY STRINGS
+
+
+********************************************* */
+
+
+function getEvents() {
+    // eventsAsJSON = a string or null
+    let eventsAsJson = localStorage.getItem('cm-events');
+
+    let storedEvents = [];
+
+    if (eventsAsJson == null) {
+        //there was nothing in local storage
+        storedEvents = DEFAULT_EVENTS;
+        saveEvents(DEFAULT_EVENTS);
+    } else {
+        // We found something in local storage
+        storedEvents = JSON.parse(eventsAsJson);
+    }
+
+    return storedEvents;
+}
+
+function saveEvents(events) {
+    let eventsAsJson = JSON.stringify(events);
+
+    localStorage.setItem('cm-events', eventsAsJson);
 }
