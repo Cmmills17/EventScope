@@ -100,11 +100,15 @@ function buildDropDown() {
         let dropdownButton = dropdownItem.querySelector('button.dropdown-item');
         dropdownButton.innerText = cityName;
 
+        dropdownButton.addEventListener('click', filterByCity);
+
         //stick that dropdown item on the page
         dropdownMenu.appendChild(dropdownItem);
     }
+
     // stick those dropdown items on the page
     displayStats(currentEvents);
+    displayEvents(currentEvents);
 }
 
 
@@ -123,6 +127,7 @@ function displayStats(events) {
         if (event.attendance > maxAttendance) {
             maxAttendance = event.attendance;
         }
+
         if (event.attendance < minAttendance) {
             minAttendance = event.attendance;
         }
@@ -136,9 +141,66 @@ function displayStats(events) {
     document.getElementById('stats-average').innerText = averageAttendance.toLocaleString();
 }
 
+// parameter is an array of objects
+function displayEvents(events) {
 
-function displayTable(events) {
+    let template = document.getElementById('event-row-template');
+    let eventsTable = document.getElementById('events-table');
 
-    let rowTemplate = document.getElementById('event-row-template')
+    eventsTable.innerHTML = '';
 
+    for (let i = 0; i < events.length; i++) {
+        let event = events[i];
+
+        let tableRowEl = template.content.cloneNode(true);
+
+        let eventNameCell = tableRowEl.querySelector('.evt-name');
+        eventNameCell.innerText = event.event;
+        // ....Add the data to the other <td's>
+        let cityCell = tableRowEl.querySelector('.evt-city');
+        cityCell.innerText = event.city;
+
+        let stateCell = tableRowEl.querySelector('.evt-state');
+        stateCell.innerText = event.city;
+
+        let dateCell = tableRowEl.querySelector('.evt-date');
+        let eventDate = new Date(event.date);
+        dateCell.innerText = eventDate.toLocaleDateString();
+
+        let attendanceCell = tableRowEl.querySelector('.evt-attendance');
+        attendanceCell.innerText = event.attendance.toLocaleString();
+
+        eventsTable.appendChild(tableRowEl);
+    }
+}
+
+
+function filterByCity(clickEvent) {
+    let selectedCity = clickEvent.currentTarget.innerText;
+
+    document.getElementById('stats-city').innerText = selectedCity;
+    document.getElementById('dropdown-btn').innerText = `${selectedCity} Events`
+
+    // get an array of ALL the events I know about
+    let allEvents = DEFAULT_EVENTS; //TODO: save the new events???
+
+    // make a new array of ONLY the events from 'selectedCity'
+    let filteredEvents = [];
+
+    if (selectedCity == 'All') {
+        // if you selected 'All' we'll just use allEvents
+        filteredEvents = allEvents;
+    } else {
+
+        for (let i = 0; i < allEvents.length; i++) {
+            let event = allEvents[i];
+
+            if (event.city == selectedCity) {
+                filteredEvents.push(event);
+            }
+        }
+    }
+    // pass the filtered array to displayStats and displayEvents
+    displayStats(filteredEvents);
+    displayEvents(filteredEvents);
 }
