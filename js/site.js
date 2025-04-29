@@ -204,3 +204,10 @@ function filterByCity(clickEvent) {
     displayStats(filteredEvents);
     displayEvents(filteredEvents);
 }
+
+
+function saveNewEvent(formSubmitEvent) {
+    formSubmitEvent.preventDefault();
+
+    alert('form submitted');
+}
