@@ -166,7 +166,7 @@ function displayEvents(events) {
         cityCell.innerText = event.city;
 
         let stateCell = tableRowEl.querySelector('.evt-state');
-        stateCell.innerText = event.city;
+        stateCell.innerText = event.state;
 
         let dateCell = tableRowEl.querySelector('.evt-date');
         let eventDate = new Date(event.date);
